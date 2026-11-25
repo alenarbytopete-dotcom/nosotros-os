@@ -1,0 +1,361 @@
+<title>Nosotros OS</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* Concepto: app de bolsillo, una columna tipo teléfono, tarjetas grandes con "fotos" ilustradas, 3 estilos intercambiables por tokens */
+:root{
+  --bg:#1c1020;--bg2:#2a1630;--fg:#fbefe9;--mute:#c5a9b4;--card:rgba(255,255,255,.07);--line:rgba(255,255,255,.12);
+  --accent:#ff8f70;--accent2:#f2c4d0;--ink:#2a1020;--glow:rgba(255,143,112,.35);
+  --display:'Fraunces',Georgia,serif;--body:'Inter',system-ui,sans-serif;--r:26px;--dw:400;--di:italic;
+  --s1:#ff9a76;--s2:#d9567b;--s3:#6b2a68;--s4:#2a1236;--sun:#ffe3b8;--hill1:#4a1f55;--hill2:#2a1236;--hill3:#1c1020;
+}
+body[data-s="perla"]{
+  --bg:#f4f1f6;--bg2:#fff;--fg:#1b1522;--mute:#7d7488;--card:#fff;--line:rgba(27,21,34,.09);
+  --accent:#ff3d6e;--accent2:#7a5cff;--ink:#fff;--glow:rgba(255,61,110,.25);
+  --display:'Bricolage Grotesque',system-ui,sans-serif;--r:30px;--dw:800;--di:normal;
+  --s1:#ffd1c2;--s2:#ff7fa3;--s3:#9b7bff;--s4:#5a49d6;--sun:#fff6e8;--hill1:#7a5cff;--hill2:#4b3bc2;--hill3:#2e2392;
+}
+body[data-s="jardin"]{
+  --bg:#0d1d17;--bg2:#15291f;--fg:#f1ece0;--mute:#9fb3a5;--card:rgba(241,236,224,.06);--line:rgba(241,236,224,.13);
+  --accent:#f4b6c2;--accent2:#c9e265;--ink:#0d1d17;--glow:rgba(244,182,194,.28);
+  --display:'Instrument Serif',Georgia,serif;--r:22px;--dw:400;--di:italic;
+  --s1:#f4b6c2;--s2:#c98a7a;--s3:#2f5a45;--s4:#10281e;--sun:#f6e7c8;--hill1:#2f5a45;--hill2:#1b3d2e;--hill3:#0d1d17;
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased;transition:background .5s,color .5s;
+  padding-left:max(0px,env(safe-area-inset-left,0px));padding-right:max(0px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+.app{max-width:460px;margin:0 auto;min-height:100vh;position:relative;padding:0 max(18px,env(safe-area-inset-left,0px)) 120px max(18px,env(safe-area-inset-right,0px))}
+.glowbg{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(60% 40% at 80% 0%,var(--glow),transparent 70%),radial-gradient(50% 35% at 0% 60%,color-mix(in srgb,var(--accent2) 14%,transparent),transparent 70%)}
+.app>*{position:relative;z-index:1}
+h1,h2,h3,.disp{font-family:var(--display);font-weight:var(--dw);letter-spacing:-.02em;text-wrap:balance}
+body[data-s="atardecer"] .disp,body[data-s="jardin"] .disp{font-style:var(--di)}
+/* top */
+.styles{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;gap:6px;padding:10px 0;margin:0 -4px;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 70%,transparent)}
+.styles button{flex:1;border:1px solid var(--line);background:var(--card);color:var(--mute);font:500 12px var(--body);padding:8px 6px;border-radius:99px;cursor:pointer;transition:.3s}
+.styles button[aria-pressed=true]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 0 6px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.avs{display:flex}.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font:700 14px var(--body);border:2px solid var(--bg);color:var(--ink)}
+.av.m{background:var(--accent2)}.av.y{background:var(--accent);margin-left:-10px}
+h1{font-size:clamp(34px,10vw,44px);line-height:1.02;margin:8px 0 18px}
+/* hero scene */
+.hero{border-radius:36px;overflow:hidden;position:relative;aspect-ratio:4/4.3;box-shadow:0 30px 60px -30px var(--glow);isolation:isolate}
+.hero svg.scene{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.hero .in{position:absolute;inset:0;padding:22px;display:flex;flex-direction:column;justify-content:space-between;color:#fff}
+.hero .big{font:var(--dw) 76px/0.9 var(--display);letter-spacing:-.04em}
+body[data-s="atardecer"] .hero .big,body[data-s="jardin"] .hero .big{font-style:italic;font-weight:400}
+.hero .sm{font-size:13px;opacity:.9}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;font:500 12px var(--body);background:rgba(255,255,255,.18);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);color:#fff}
+.ring{position:absolute;right:20px;bottom:20px;width:84px;height:84px}
+.ring text{fill:#fff;font:700 18px var(--body)}
+/* sections */
+.sec{margin-top:34px}
+.sec h2{font-size:28px;margin-bottom:4px}.sec p.sub{color:var(--mute);margin-bottom:14px;font-size:14px}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.day{border-radius:18px;padding:10px 0 8px;text-align:center;background:var(--card);border:1px solid var(--line);font-size:11px;color:var(--mute);transition:.3s}
+.day b{display:block;font:600 17px var(--body);color:var(--fg);margin:2px 0 6px}
+.day i{display:block;height:6px;width:6px;border-radius:50%;margin:0 auto;background:transparent}
+.day.j{background:linear-gradient(160deg,var(--accent),var(--s2));color:#fff;border-color:transparent;box-shadow:0 10px 24px -10px var(--glow)}
+.day.j b{color:#fff}.day.j i{background:#fff}
+.day.t{outline:2px solid var(--accent2);outline-offset:2px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;backdrop-filter:blur(10px)}
+body[data-s="perla"] .card{box-shadow:0 12px 30px -18px rgba(40,20,80,.25)}
+.smart{display:grid;gap:10px}
+.smart .card{display:flex;gap:14px;align-items:center;cursor:pointer;transition:transform .25s}
+.smart .card:active{transform:scale(.98)}
+.ico{flex:none;width:52px;height:52px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(150deg,var(--accent),var(--s2));color:#fff}
+.ico svg{width:26px;height:26px}
+.smart h3{font:600 15px var(--body);letter-spacing:0}.smart p{color:var(--mute);font-size:13px;margin-top:2px}
+.why{display:inline-block;margin-top:6px;font-size:11px;color:var(--accent2);letter-spacing:.04em}
+body[data-s="perla"] .why{color:var(--accent)}
+.q{border-radius:var(--r);padding:24px;background:linear-gradient(160deg,var(--s3),var(--s4));color:#fff;position:relative;overflow:hidden}
+.q .disp{font-size:28px;line-height:1.1;margin:10px 0 16px}
+.btn{border:0;border-radius:99px;padding:13px 20px;font:600 14px var(--body);cursor:pointer;background:var(--fg);color:var(--bg);transition:transform .2s}
+.btn:active{transform:scale(.96)}.btn.acc{background:linear-gradient(135deg,var(--accent),var(--s2));color:#fff;box-shadow:0 12px 26px -10px var(--glow)}
+.btn.ghost{background:var(--card);color:var(--fg);border:1px solid var(--line)}
+/* screens */
+.screen{display:none;animation:in .5s cubic-bezier(.2,.8,.2,1)}.screen.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.filters{display:grid;gap:10px;margin:14px 0 18px}
+.frow{display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none}.frow::-webkit-scrollbar{display:none}
+.frow span{flex:none;width:64px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.fc{flex:none;border:1px solid var(--line);background:var(--card);color:var(--fg);padding:8px 14px;border-radius:99px;font:500 13px var(--body);cursor:pointer;transition:.25s}
+.fc[aria-pressed=true]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.date{border-radius:32px;overflow:hidden;position:relative;aspect-ratio:4/3.4;margin-bottom:14px;isolation:isolate;color:#fff;animation:in .5s both}
+.date svg.scene{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.date::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.55))}
+.date .in{position:absolute;inset:0;padding:18px;display:flex;flex-direction:column;justify-content:space-between}
+.date h3{font-size:30px;line-height:1.02}.date .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.match{display:flex;align-items:center;gap:6px;align-self:flex-start;background:#fff;color:#2a1020;border-radius:99px;padding:5px 12px 5px 6px;font:600 12px var(--body)}
+.match .av{width:22px;height:22px;font-size:10px;border:0}.match .av.y{margin-left:-8px}
+.heart{position:absolute;right:16px;top:16px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.22);backdrop-filter:blur(10px);color:#fff;cursor:pointer;display:grid;place-items:center;transition:.3s}
+.heart.on{background:#fff;color:var(--accent);transform:scale(1.08)}
+.heart svg{width:22px;height:22px}
+.fab{display:flex;gap:10px;margin:6px 0 4px}
+/* wheel */
+.ov{position:fixed;inset:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,#000);backdrop-filter:blur(20px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:24px}
+.ov.on{display:flex}
+.wheelwrap{position:relative;width:min(80vw,340px);aspect-ratio:1}
+.wheelwrap svg{width:100%;height:100%;transition:transform 4s cubic-bezier(.1,.7,.1,1)}
+.pin{position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:0;height:0;border:14px solid transparent;border-top:26px solid var(--fg);z-index:2}
+.result{font-size:32px;text-align:center;min-height:76px}
+/* tinder */
+.stack{position:relative;aspect-ratio:3/4;margin:10px 0 18px}
+.fcard{position:absolute;inset:0;border-radius:36px;overflow:hidden;isolation:isolate;color:#fff;touch-action:pan-y;user-select:none;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .45s;box-shadow:0 30px 50px -30px #000}
+.fcard svg.scene{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.fcard::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.6))}
+.fcard .in{position:absolute;inset:0;padding:22px;display:flex;flex-direction:column;justify-content:flex-end}
+.fcard h3{font-size:38px;line-height:1}.fcard p{opacity:.9;margin-top:6px;font-size:14px}
+.votes{display:flex;justify-content:center;gap:22px}
+.vb{width:68px;height:68px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer;display:grid;place-items:center;transition:.2s}
+.vb:active{transform:scale(.9)}.vb.y{background:linear-gradient(135deg,var(--accent),var(--s2));color:#fff;border:0;box-shadow:0 14px 30px -10px var(--glow)}
+.vb svg{width:28px;height:28px}
+.matches{display:flex;gap:10px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none}
+.mt{flex:none;width:96px;text-align:center;font-size:12px}
+.mt div{width:96px;height:96px;border-radius:28px;overflow:hidden;margin-bottom:6px;position:relative}
+.mt svg{width:100%;height:100%}
+.meal{display:grid;grid-template-columns:78px 1fr auto;gap:12px;align-items:center;padding:10px;border-radius:24px;background:var(--card);border:1px solid var(--line);margin-bottom:8px}
+.meal .th{width:78px;height:78px;border-radius:18px;overflow:hidden}.meal .th svg{width:100%;height:100%}
+.meal h4{font:600 15px var(--body)}.meal p{font-size:12px;color:var(--mute)}
+.tog{border:1px solid var(--line);background:transparent;color:var(--mute);border-radius:99px;padding:7px 11px;font:500 11px var(--body);cursor:pointer}
+.tog[aria-pressed=true]{background:var(--accent2);color:var(--ink);border-color:transparent}
+.dtabs{display:flex;gap:6px;margin:14px 0;overflow-x:auto;scrollbar-width:none}
+/* plan */
+.plan h3{font:600 17px var(--body);margin:22px 0 8px;letter-spacing:0}
+.plan p,.plan li{color:var(--mute);font-size:14px}.plan ul{padding-left:18px;display:grid;gap:5px}.plan b{color:var(--fg)}
+.phase{display:grid;grid-template-columns:44px 1fr;gap:12px;margin-bottom:10px}
+.phase .n{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;font:700 16px var(--display);background:linear-gradient(150deg,var(--accent),var(--s2));color:#fff}
+.priv{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lock{display:inline-block;font-size:11px;padding:3px 9px;border-radius:99px;border:1px solid var(--line);margin:2px 3px 2px 0;color:var(--fg)}
+/* tabbar */
+.tabbar{position:fixed;left:50%;transform:translateX(-50%);bottom:max(14px,env(safe-area-inset-bottom,0px));z-index:25;display:flex;gap:2px;padding:6px;border-radius:99px;background:color-mix(in srgb,var(--bg2) 82%,transparent);backdrop-filter:blur(22px);border:1px solid var(--line);box-shadow:0 20px 40px -16px rgba(0,0,0,.5)}
+.tabbar button{border:0;background:transparent;color:var(--mute);padding:10px 16px;border-radius:99px;font:500 12px var(--body);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:.3s}
+.tabbar svg{width:22px;height:22px}
+.tabbar button[aria-selected=true]{background:var(--fg);color:var(--bg)}
+.toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 70px);transform:translate(-50%,-20px);opacity:0;z-index:60;background:var(--fg);color:var(--bg);padding:10px 18px;border-radius:99px;font:500 13px var(--body);transition:.4s;pointer-events:none;white-space:nowrap}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.note{font-size:11px;color:var(--mute);text-align:center;margin-top:30px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+button:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+</style>
+
+<div class="glowbg"></div>
+<div class="app" id="app">
+  <div class="styles" role="group" aria-label="Estilo visual">
+    <button data-s="atardecer" aria-pressed="true">A · Atardecer</button>
+    <button data-s="perla" aria-pressed="false">B · Perla</button>
+    <button data-s="jardin" aria-pressed="false">C · Jardín</button>
+  </div>
+
+  <!-- INICIO -->
+  <section class="screen on" id="s-inicio">
+    <div class="top"><span class="eyebrow" id="fecha"></span><div class="avs"><div class="av m">M</div><div class="av y">Y</div></div></div>
+    <h1 class="disp" id="saludo">Buenas noches, Miguel</h1>
+    <div class="hero">
+      <svg class="scene" id="heroScene" viewBox="0 0 400 430" preserveAspectRatio="xMidYMid slice"></svg>
+      <div class="in">
+        <span class="chip">Ejemplo · fecha de ustedes</span>
+        <div><div class="big">1,204</div><div class="sm">días juntos · faltan 41 para su aniversario</div></div>
+      </div>
+      <svg class="ring" viewBox="0 0 84 84"><circle cx="42" cy="42" r="36" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.3)" stroke-width="5"/><circle cx="42" cy="42" r="36" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-dasharray="226" stroke-dashoffset="30" transform="rotate(-90 42 42)"/><text x="42" y="48" text-anchor="middle">89%</text></svg>
+    </div>
+
+    <div class="sec"><h2 class="disp">Esta semana</h2><p class="sub">Las noches que cenan juntos se iluminan.</p>
+      <div class="week" id="week"></div></div>
+
+    <div class="sec"><h2 class="disp">Hoy, para ustedes</h2><p class="sub">Sugerencias que salen de lo que ya saben el uno del otro.</p>
+      <div class="smart" id="smart"></div></div>
+
+    <div class="sec"><div class="q">
+      <span class="chip">Pregunta de la noche</span>
+      <div class="disp">¿Cuál fue el momento de este año en el que más te sentiste cuidado/a?</div>
+      <button class="btn" onclick="toast('Cada quien responde en privado y luego se revelan juntas')">Responder</button>
+    </div></div>
+    <p class="note">Prototipo visual. Todos los datos son de ejemplo.</p>
+  </section>
+
+  <!-- CITAS -->
+  <section class="screen" id="s-citas">
+    <div class="top"><span class="eyebrow">Actividades y citas</span></div>
+    <h1 class="disp">¿Qué hacemos?</h1>
+    <div class="filters">
+      <div class="frow"><span>Gasto</span><button class="fc" data-k="p" data-v="1" aria-pressed="false">Casi gratis</button><button class="fc" data-k="p" data-v="2" aria-pressed="false">Hasta $400</button><button class="fc" data-k="p" data-v="3" aria-pressed="false">Date un gusto</button></div>
+      <div class="frow"><span>Tiempo</span><button class="fc" data-k="t" data-v="1" aria-pressed="false">1–2 horas</button><button class="fc" data-k="t" data-v="2" aria-pressed="false">Tarde</button><button class="fc" data-k="t" data-v="3" aria-pressed="false">Todo el día</button></div>
+      <div class="frow"><span>Ganas</span><button class="fc" data-k="g" data-v="1" aria-pressed="false">En casa</button><button class="fc" data-k="g" data-v="2" aria-pressed="false">Cerca</button><button class="fc" data-k="g" data-v="3" aria-pressed="false">Salir lejos</button></div>
+    </div>
+    <div class="fab"><button class="btn acc" id="spin">Ruleta</button><button class="btn ghost" onclick="toast('Aquí cada quien vota por separado y se revelan las coincidencias')">Votar los dos</button></div>
+    <div id="dates"></div>
+  </section>
+
+  <!-- COMIDA -->
+  <section class="screen" id="s-comida">
+    <div class="top"><span class="eyebrow">Alimentación</span></div>
+    <h1 class="disp">¿Qué se nos antoja?</h1>
+    <div class="stack" id="stack"></div>
+    <div class="votes"><button class="vb" id="no" aria-label="No"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><button class="vb y" id="yes" aria-label="Sí"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 5 6.4 5c2 0 3.6 1.1 5.6 3.3C14 6.1 15.600 5 17.600 5 21 5 23.100 8.400 21.600 11.800 19.500 16.400 12 21 12 21z"/></svg></button></div>
+    <div class="sec"><h2 class="disp">Coincidencias</h2><p class="sub">Lo que los dos dijeron que sí.</p><div class="matches" id="matches"><div class="note" style="margin:0">Aún no hay coincidencias. Desliza o toca el corazón.</div></div></div>
+    <div class="sec"><h2 class="disp">Menú de la semana</h2><p class="sub">Yadira lo diseña. Tú marcas cuándo comen juntos.</p>
+      <div class="dtabs" id="dtabs"></div><div id="meals"></div></div>
+  </section>
+
+  <!-- PLAN -->
+  <section class="screen plan" id="s-plan">
+    <div class="top"><span class="eyebrow">Hoja de ruta</span></div>
+    <h1 class="disp">Cómo lo construimos</h1>
+    <p>La idea central: <b>una sola pantalla de inicio que decide por ustedes qué importa hoy</b>, alimentada por datos que ya existen en las demás secciones. Si cada sección fuera una app aparte, pasaría lo de la vez anterior.</p>
+
+    <h3>Lo que haría distinto</h3>
+    <ul>
+      <li><b>Menos secciones al inicio.</b> 12 módulos a la vez es el riesgo número uno de abandono. Empezar con 3 que se usen cada semana.</li>
+      <li><b>Todo gira alrededor del tiempo juntos.</b> El eje no es el catálogo, es "¿qué hacemos esta semana?". La agenda es el esqueleto; citas, comida y súper cuelgan de ella.</li>
+      <li><b>Cada función necesita un hábito de 30 segundos</b> (votar una comida, responder una pregunta) y un resultado visible (coincidencia, racha, recuerdo).</li>
+      <li><b>Un modo "solo toca esto"</b> para cuando no quieren pensar: una sola sugerencia grande y un botón.</li>
+    </ul>
+
+    <h3>Qué no habías considerado</h3>
+    <ul>
+      <li><b>Notificaciones suaves en iPhone</b> (Pantalla de inicio + recordatorios) para la pregunta de la noche y la lista del súper.</li>
+      <li><b>Modo "cápsula de tiempo":</b> una carta o foto que se abre en una fecha futura.</li>
+      <li><b>Rachas amables</b> (semanas con una cita, no días sin fallar) para no generar culpa.</li>
+      <li><b>Registro de "lo que aprendimos del otro"</b>: gustos, alergias, tallas, la bebida favorita. Alimenta regalos y sorpresas solo.</li>
+      <li><b>Modo viaje sin internet</b> y panel de tablet "hoy" con reloj, clima y la próxima cita.</li>
+      <li><b>Respaldo exportable</b> de recuerdos: que nada quede atrapado en la app.</li>
+    </ul>
+
+    <h3>Privacidad, bien hecha</h3>
+    <div class="card">
+      <p style="margin-bottom:8px">Cada dato tiene un dueño y un nivel de visibilidad, desde el primer día:</p>
+      <span class="lock">Privado: ciclo de Yadira</span><span class="lock">Privado: sorpresas en preparación</span><span class="lock">Compartido: agenda, súper, menú</span><span class="lock">Compartido a elección: ciclo → "hoy necesito…"</span><span class="lock">Votos ocultos hasta que ambos votan</span>
+      <p style="margin-top:8px">El ciclo se comparte como frases que ella elige ("hoy prefiero planes tranquilos"), nunca como datos crudos, a menos que ella lo active.</p>
+    </div>
+
+    <h3>Orden de construcción</h3>
+    <div class="phase"><div class="n">1</div><div><b>Cimientos + Inicio.</b><p>Acceso de los dos, sincronización en tiempo real, pantalla de inicio, agenda compartida. Es la base del ecosistema.</p></div></div>
+    <div class="phase"><div class="n">2</div><div><b>Citas + coincidencias.</b><p>Catálogo, filtros, ruleta, votación a ciegas. Es lo más divertido y crea el hábito.</p></div></div>
+    <div class="phase"><div class="n">3</div><div><b>Comida + súper.</b><p>Menú semanal de Yadira, Tinder de comida, lista en vivo ligada al menú. Es lo de uso diario.</p></div></div>
+    <div class="phase"><div class="n">4</div><div><b>Recuerdos + viajes.</b><p>Álbum, línea del tiempo, pasaporte. Se llena solo con lo que ya hicieron en las fases 2 y 3.</p></div></div>
+    <div class="phase"><div class="n">5</div><div><b>Relación y ciclo.</b><p>Lo más sensible. Mejor con Yadira diseñando qué quiere compartir.</p></div></div>
+    <div class="phase"><div class="n">6</div><div><b>Finanzas, sorpresas, entretenimiento, IA.</b><p>La IA entra al final porque necesita datos acumulados para proponer algo bueno.</p></div></div>
+
+    <h3>Encaje con el ecosistema</h3>
+    <ul>
+      <li><b>Un solo núcleo de datos (Supabase)</b> con espacios: <i>compartido de pareja</i>, <i>privado de Miguel</i>, <i>privado de Yadira</i>, <i>por negocio</i>. Cada app (Topete OS, Yadira OS, ALYRA, ALENAR) lee solo los espacios que le tocan.</li>
+      <li><b>Topete OS</b> ve tu espacio privado + el compartido (ej. tu agenda del negocio choca con una cita: aviso).</li>
+      <li><b>Yadira OS</b> ve el suyo + el compartido. Tu ciclo y el suyo nunca se mezclan sin permiso.</li>
+      <li><b>Tablets Galaxy Tab:</b> páginas web a pantalla completa en modo quiosco, una vista "hoy" que se refresca sola.</li>
+    </ul>
+
+    <h3>Cosas que necesito de ti</h3>
+    <ul>
+      <li>¿Cómo se llama Yadira para el saludo, y desde cuándo son novios (para el contador)?</li>
+      <li>¿Ella también usa iPhone? ¿Quiere participar en el diseño desde ya?</li>
+      <li>¿Qué estilo (A, B o C) te mueve más? Puedes combinar.</li>
+    </ul>
+  </section>
+</div>
+
+<div class="ov" id="ov"><div class="wheelwrap"><div class="pin"></div><svg id="wheel" viewBox="-100 -100 200 200"></svg></div><div class="result disp" id="res">Gira la ruleta</div><div style="display:flex;gap:10px"><button class="btn acc" id="go">Girar</button><button class="btn ghost" id="close">Cerrar</button></div></div>
+<div class="toast" id="toast"></div>
+<nav class="tabbar" role="tablist">
+  <button role="tab" data-t="inicio" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Inicio</button>
+  <button role="tab" data-t="citas" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.500-4.600-9.600-9.200C.9 8.400 3 5 6.400 5c2 0 3.600 1.100 5.600 3.300C14 6.100 15.600 5 17.600 5 21 5 23.100 8.400 21.600 11.800 19.500 16.400 12 21 12 21z"/></svg>Citas</button>
+  <button role="tab" data-t="comida" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2 2 0 0 0 2 2v8M11 3v8a2 2 0 0 1-2 2M17 21V3c-2 1-3.500 4-3.500 8H17"/></svg>Comida</button>
+  <button role="tab" data-t="plan" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Plan</button>
+</nav>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),2400)}
+/* ---------- ilustraciones (las "fotos" de prototipo) ---------- */
+function scene(kind,id){
+  const g=`<defs><linearGradient id="sk${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--s4)"/><stop offset=".55" stop-color="var(--s3)"/><stop offset=".85" stop-color="var(--s2)"/><stop offset="1" stop-color="var(--s1)"/></linearGradient><radialGradient id="gl${id}"><stop offset="0" stop-color="var(--sun)"/><stop offset="1" stop-color="var(--sun)" stop-opacity="0"/></radialGradient></defs><rect width="400" height="430" fill="url(#sk${id})"/>`;
+  const sun=(x,y,r)=>`<circle cx="${x}" cy="${y}" r="${r*2.6}" fill="url(#gl${id})" opacity=".7"/><circle cx="${x}" cy="${y}" r="${r}" fill="var(--sun)"/>`;
+  const stars=[...Array(18)].map((_,i)=>`<circle cx="${(i*83)%400}" cy="${(i*47)%180}" r="${1+(i%3)*.6}" fill="#fff" opacity=".6"/>`).join('');
+  const S={
+   sunset:g+stars+sun(270,250,34)+`<path d="M0 300 Q90 250 190 290 T400 270 V430H0z" fill="var(--hill1)"/><path d="M0 350 Q120 300 240 345 T400 330 V430H0z" fill="var(--hill2)"/><path d="M0 395 Q150 360 400 390 V430H0z" fill="var(--hill3)"/>`,
+   sea:g+sun(120,260,28)+`<rect y="285" width="400" height="145" fill="var(--hill2)"/>${[0,1,2,3,4,5,6].map(i=>`<rect x="${60+i*18-(i%2)*30}" y="${292+i*17}" width="${150-i*12}" height="3" rx="2" fill="var(--sun)" opacity="${.7-i*.08}"/>`).join('')}<path d="M300 290 l30 -50 l30 50z" fill="var(--hill3)"/>`,
+   city:g+stars+sun(300,140,22)+[...Array(9)].map((_,i)=>{const h=70+((i*53)%120),w=34+(i%3)*8,x=i*46-8;return `<rect x="${x}" y="${430-h-40}" width="${w}" height="${h+40}" fill="var(--hill${1+i%3})"/>${[0,1,2,3].map(j=>`<rect x="${x+6+(j%2)*14}" y="${430-h-24+Math.floor(j/2)*22}" width="6" height="9" fill="var(--sun)" opacity="${.5+(j%2)*.3}"/>`).join('')}`}).join(''),
+   mountain:g+stars+sun(110,170,26)+`<path d="M-20 360 L110 210 L190 300 L270 190 L420 360z" fill="var(--hill1)"/><path d="M-20 400 L90 300 L200 380 L330 280 L420 390 V430H-20z" fill="var(--hill2)"/><path d="M0 410 Q200 380 400 410 V430H0z" fill="var(--hill3)"/>`,
+   table:g+`<circle cx="200" cy="150" r="90" fill="url(#gl${id})" opacity=".8"/><rect x="0" y="300" width="400" height="130" fill="var(--hill2)"/><ellipse cx="200" cy="318" rx="130" ry="26" fill="var(--hill3)"/><ellipse cx="200" cy="296" rx="100" ry="22" fill="var(--sun)"/><ellipse cx="200" cy="292" rx="72" ry="14" fill="var(--s2)"/><circle cx="175" cy="288" r="9" fill="var(--s1)"/><circle cx="215" cy="286" r="11" fill="var(--sun)" opacity=".8"/><path d="M180 250 q-12 -26 4 -44 M214 246 q-12 -26 4 -44" stroke="var(--sun)" stroke-width="4" fill="none" stroke-linecap="round" opacity=".6"/>`,
+   candles:g+[70,150,230,310].map((x,i)=>`<circle cx="${x+10}" cy="${220-i%2*20}" r="40" fill="url(#gl${id})" opacity=".8"/><rect x="${x}" y="${240-i%2*20}" width="20" height="${130+i%2*20}" rx="4" fill="var(--sun)" opacity=".9"/><ellipse cx="${x+10}" cy="${226-i%2*20}" rx="6" ry="12" fill="var(--s1)"/>`).join('')+`<rect y="372" width="400" height="58" fill="var(--hill3)"/>`
+  };
+  return S[kind]||S.sunset;
+}
+let sid=0;function svg(kind,cls='scene',extra=''){sid++;return `<svg class="${cls}" viewBox="0 0 400 430" preserveAspectRatio="xMidYMid slice" ${extra}>${scene(kind,sid)}</svg>`}
+$('#heroScene').innerHTML=scene('sunset','h');
+
+/* ---------- estilos ---------- */
+function setStyle(s){document.body.dataset.s=s;$$('.styles button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.s===s));try{localStorage.setItem('nos-style',s)}catch(e){}}
+$$('.styles button').forEach(b=>b.onclick=()=>setStyle(b.dataset.s));
+let saved='atardecer';try{saved=localStorage.getItem('nos-style')||saved}catch(e){}
+if(location.hash==='#perla'||location.hash==='#jardin'||location.hash==='#atardecer')saved=location.hash.slice(1);
+setStyle(saved);
+
+/* ---------- navegación ---------- */
+function go(t){$$('.screen').forEach(s=>s.classList.toggle('on',s.id==='s-'+t));$$('.tabbar button').forEach(b=>b.setAttribute('aria-selected',b.dataset.t===t));scrollTo({top:0,behavior:'smooth'})}
+$$('.tabbar button').forEach(b=>b.onclick=()=>go(b.dataset.t));
+
+/* ---------- inicio ---------- */
+const now=new Date();$('#fecha').textContent=now.toLocaleDateString('es-MX',{weekday:'long',day:'numeric',month:'long'});
+const h=now.getHours();$('#saludo').textContent=(h<12?'Buenos días':h<19?'Buenas tardes':'Buenas noches')+', Miguel';
+const dn=['L','M','M','J','V','S','D'],joint=[0,0,1,0,1,1,1],td=(now.getDay()+6)%7;
+$('#week').innerHTML=dn.map((d,i)=>`<div class="day ${joint[i]?'j':''} ${i===td?'t':''}">${d}<b>${24-td+i>30?24-td+i-30:24-td+i}</b><i></i></div>`).join('');
+const ic={heart:'<path d="M12 21s-7.500-4.600-9.600-9.200C.9 8.400 3 5 6.400 5c2 0 3.600 1.100 5.600 3.300C14 6.100 15.600 5 17.600 5 21 5 23.100 8.400 21.600 11.800 19.500 16.400 12 21 12 21z"/>',cart:'<path d="M3 4h3l2.500 11h9L20 7H7"/><circle cx="9" cy="19" r="1.500"/><circle cx="17" cy="19" r="1.500"/>',cal:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/>',gift:'<rect x="3" y="9" width="18" height="12" rx="2"/><path d="M12 9v12M3 13h18M12 9C9 9 7.500 5 10 5s2 4 2 4 0-4 2-4 3 4 0 4"/>'};
+const sm=[['heart','Coincidieron en 3 citas','Los dos votaron "mirador al atardecer". Libres el sábado, 4 a 8 pm.','de sus votos de esta semana'],['cart','Faltan 4 cosas para la cena del jueves','Aguacate, limones, tortillas y queso panela. Lo demás ya lo tienen.','del menú de Yadira + lo que hay en casa'],['cal','Yadira sale tarde el viernes','Cena en casa en vez de restaurante. Ya está en el menú.','de la agenda compartida'],['gift','Faltan 12 días para su aniversario','Tu lista secreta tiene 2 ideas. Yadira no la ve.','de sorpresas (privado)']];
+$('#smart').innerHTML=sm.map(a=>`<div class="card" onclick="toast('Aquí abriría: ${a[1].replace(/'/g,'')}')"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ic[a[0]]}</svg></div><div><h3>${a[1]}</h3><p>${a[2]}</p><span class="why">↳ ${a[3]}</span></div></div>`).join('');
+
+/* ---------- citas ---------- */
+const D=[
+ {n:'Mirador al atardecer',k:'sunset',p:1,t:2,g:2,c:'Gratis',d:'3 h',m:1,hue:0},
+ {n:'Noche de ramen y película',k:'table',p:2,t:2,g:1,c:'$250',d:'4 h',m:1,hue:25},
+ {n:'Cena con velas en casa',k:'candles',p:2,t:1,g:1,c:'$300',d:'2 h',m:0,hue:-20},
+ {n:'Escapada a la playa',k:'sea',p:3,t:3,g:3,c:'$1,800',d:'Todo el día',m:0,hue:-60},
+ {n:'Caminata y café en el centro',k:'city',p:1,t:1,g:2,c:'$120',d:'2 h',m:1,hue:40},
+ {n:'Excursión al cerro',k:'mountain',p:1,t:3,g:3,c:'$80',d:'Todo el día',m:0,hue:15},
+ {n:'Tacos y paseo nocturno',k:'city',p:1,t:1,g:2,c:'$150',d:'2 h',m:0,hue:-35}];
+const F={p:0,t:0,g:0},liked=new Set([0,1]);
+function renderDates(){
+  const l=D.map((x,i)=>({x,i})).filter(({x})=>(!F.p||x.p===F.p)&&(!F.t||x.t===F.t)&&(!F.g||x.g===F.g));
+  $('#dates').innerHTML=l.length?l.map(({x,i},j)=>`<article class="date" style="animation-delay:${j*60}ms"><div style="position:absolute;inset:0;z-index:-1;filter:hue-rotate(${x.hue}deg)">${svg(x.k)}</div>
+   <button class="heart ${liked.has(i)?'on':''}" data-i="${i}" aria-label="Me gusta"><svg viewBox="0 0 24 24" fill="${liked.has(i)?'currentColor':'none'}" stroke="currentColor" stroke-width="2">${ic.heart}</svg></button>
+   <div class="in"><div>${x.m?`<span class="match"><span class="av m">M</span><span class="av y">Y</span> Coincidencia</span>`:''}</div><div><h3 class="disp">${x.n}</h3><div class="meta"><span class="chip">${x.c}</span><span class="chip">${x.d}</span></div></div></div></article>`).join(''):`<div class="card" style="text-align:center;color:var(--mute)">Nada con esa mezcla. Quita un filtro.</div>`;
+  $$('.heart').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;liked.has(i)?liked.delete(i):liked.add(i);if(liked.has(i))toast('Guardado. Yadira lo verá al votar');renderDates()});
+  return l.map(o=>o.x);
+}
+$$('.fc').forEach(b=>b.onclick=()=>{const k=b.dataset.k,v=+b.dataset.v;F[k]=F[k]===v?0:v;$$(`.fc[data-k=${k}]`).forEach(o=>o.setAttribute('aria-pressed',+o.dataset.v===F[k]));renderDates()});
+renderDates();
+/* ruleta */
+let rot=0,pool=[];
+function drawWheel(){pool=renderDates();if(pool.length<2)pool=D.slice(0,5);const n=pool.length,w=$('#wheel');const cols=['var(--accent)','var(--s3)','var(--accent2)','var(--s2)','var(--s4)'];
+ w.innerHTML=`<g id="wg" style="transform-origin:0 0;transform:rotate(${rot}deg);transition:transform 4s cubic-bezier(.1,.7,.1,1)">`+pool.map((x,i)=>{const a0=i/n*2*Math.PI,a1=(i+1)/n*2*Math.PI,r=96,p=(a)=>[Math.sin(a)*r,-Math.cos(a)*r],A=p(a0),B=p(a1),am=(a0+a1)/2;
+  return `<path d="M0 0L${A[0]} ${A[1]}A${r} ${r} 0 0 1 ${B[0]} ${B[1]}z" fill="${cols[i%5]}" stroke="var(--bg)" stroke-width="2"/><text transform="rotate(${am*180/Math.PI}) translate(0,-58)" text-anchor="middle" font-size="${n>6?7:8.5}" fill="#fff" font-family="Inter" font-weight="600">${x.n.length>16?x.n.slice(0,15)+'…':x.n}</text>`}).join('')+`</g><circle r="12" fill="var(--bg)"/>`}
+$('#spin').onclick=()=>{$('#ov').classList.add('on');$('#res').textContent='Gira la ruleta';drawWheel()};
+$('#close').onclick=()=>$('#ov').classList.remove('on');
+$('#go').onclick=()=>{const n=pool.length,k=Math.floor(Math.random()*n);rot+=360*5+(360-(rot%360))+(360-(k+.5)/n*360);$('#wg').style.transform=`rotate(${rot}deg)`;$('#res').textContent='…';setTimeout(()=>{$('#res').textContent=pool[k].n;toast('¡Les tocó!')},4100)};
+
+/* ---------- comida (Tinder) ---------- */
+const FD=[{n:'Tacos al pastor',k:'city',d:'Los dos: 9/10 la última vez',y:1,hue:20},{n:'Pasta al pesto',k:'table',d:'Fácil · 25 min · Yadira la cocina',y:1,hue:-40},{n:'Sushi en casa',k:'sea',d:'Súper: faltan 5 ingredientes',y:0,hue:10},{n:'Pizza de masa madre',k:'candles',d:'Domingo de película',y:1,hue:30},{n:'Bowl de salmón',k:'mountain',d:'Opción ligera · Yadira aprueba',y:0,hue:-20}];
+let fi=0,fm=[];
+function renderStack(){const s=$('#stack');s.innerHTML='';const rest=FD.slice(fi,fi+2).reverse();
+ if(!rest.length){s.innerHTML=`<div class="card" style="height:100%;display:grid;place-items:center;text-align:center"><div><div class="disp" style="font-size:34px">Eso es todo por hoy</div><p style="color:var(--mute);margin-top:8px">${fm.length} coincidencias para la semana</p><button class="btn acc" style="margin-top:14px" onclick="fi=0;fm=[];renderStack();renderM()">Volver a empezar</button></div></div>`;return}
+ rest.forEach((x,j)=>{const top=j===rest.length-1,e=document.createElement('div');e.className='fcard';e.style.transform=top?'':'scale(.94) translateY(14px)';e.style.opacity=top?1:.8;
+  e.innerHTML=`<div style="position:absolute;inset:0;z-index:-1;filter:hue-rotate(${x.hue}deg)">${svg(x.k)}</div><div class="in"><h3 class="disp">${x.n}</h3><p>${x.d}</p></div>`;s.appendChild(e);if(top){e.id='top';drag(e)}})}
+function vote(y){const e=$('#top');if(!e)return;e.style.transform=`translateX(${y?'120%':'-120%'}) rotate(${y?14:-14}deg)`;e.style.opacity=0;const x=FD[fi];
+ if(y&&x.y){fm.push(x);toast('¡Coincidencia! A Yadira también se le antoja');renderM()}else if(y)toast('Votado. Yadira lo verá después');
+ fi++;setTimeout(renderStack,350)}
+function drag(e){let sx=null;e.onpointerdown=ev=>{sx=ev.clientX;e.setPointerCapture(ev.pointerId);e.style.transition='none'};
+ e.onpointermove=ev=>{if(sx===null)return;const dx=ev.clientX-sx;e.style.transform=`translateX(${dx}px) rotate(${dx/18}deg)`};
+ e.onpointerup=ev=>{if(sx===null)return;const dx=ev.clientX-sx;sx=null;e.style.transition='';if(Math.abs(dx)>90)vote(dx>0);else e.style.transform=''}}
+$('#yes').onclick=()=>vote(true);$('#no').onclick=()=>vote(false);
+function renderM(){$('#matches').innerHTML=fm.length?fm.map(x=>`<div class="mt"><div style="filter:hue-rotate(${x.hue}deg)">${svg(x.k,'')}</div>${x.n}</div>`).join(''):'<div class="note" style="margin:0">Aún no hay coincidencias. Desliza o toca el corazón.</div>'}
+renderStack();
+/* menú semanal */
+const days=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'],menu={0:[['Avena con fresas','Desayuno','sunset',0],['Ensalada griega con pollo','Comida','table',0],['Quesadillas de champiñón','Cena','candles',0]],1:[['Huevos al comal','Desayuno','city',0],['Sopa de lentejas','Comida','mountain',0],['Pasta al pesto','Cena','table',1]],2:[['Yogurt y granola','Desayuno','sea',0],['Bowl de salmón','Comida','sea',0],['Tacos de pescado','Cena','city',1]]};
+let dsel=td>2?0:td;
+function renderMeals(){$('#dtabs').innerHTML=days.map((d,i)=>`<button class="fc" aria-pressed="${i===dsel}" data-d="${i}">${d}</button>`).join('');
+ const m=menu[dsel%3];$('#meals').innerHTML=m.map((x,i)=>`<div class="meal"><div class="th" style="filter:hue-rotate(${i*40}deg)">${svg(x[2],'')}</div><div><p>${x[1]}</p><h4>${x[0]}</h4></div><button class="tog" aria-pressed="${!!x[3]}" data-i="${i}">Juntos</button></div>`).join('');
+ $$('#dtabs .fc').forEach(b=>b.onclick=()=>{dsel=+b.dataset.d;renderMeals()});
+ $$('.tog').forEach(b=>b.onclick=()=>{m[+b.dataset.i][3]^=1;if(m[+b.dataset.i][3])toast('Se suma a "juntos" y al súper de los dos');renderMeals()})}
+renderMeals();
+</script>
